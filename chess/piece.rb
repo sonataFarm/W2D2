@@ -1,11 +1,13 @@
 class Piece
-  attr_reader :type
-  def initialize(type)
-    @type = type
+  attr_reader :type, :color
+  def initialize(color, pos, board)
+    @color = color
+    @pos = pos
+    @board = board
   end
 
   def ==(other_piece)
-    self.type == other_piece.type
+    self.class == other_piece.class
   end
 
   def moves
@@ -14,7 +16,8 @@ class Piece
 end
 
 class NullPiece < Piece
+  include singleton
+
   def initialize
-    @type = nil
   end
 end
